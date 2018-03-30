@@ -17,16 +17,4 @@ export class AppComponent {
     });
   }
 
-  checkLoginStatus() {
-    this._ngxZaloService.checkLoginStatus().subscribe(result => {
-      console.log('Login status:', result);
-    });
-  }
-
-  getMyProfile() {
-    this._ngxZaloService.getMyProfile().subscribe(result => {
-      console.log('My profile:', result);
-    });
-  }
-
 }

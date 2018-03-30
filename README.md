@@ -33,6 +33,14 @@ import { NgxZaloModule } from 'ngx-zalo';
 export class AppModule { }
 ```
 
+And call in component:
+```typescript
+import { NgxZaloService } from 'ngx-zalo/dist/app/shared/services/ngx-zalo.service';
+
+constructor(private _ngxZaloService: NgxZaloService) {
+}
+```
+
 ### Login
 ```html
 <!-- Using directive -->
@@ -41,9 +49,6 @@ export class AppModule { }
 
 ```typescript
 //Using controller
-constructor(private _ngxZaloService: NgxZaloService) {
-}
-
 login() {
   this._ngxZaloService.login();
 }
@@ -57,9 +62,6 @@ login() {
 
 ```typescript
 //Using controller
-constructor(private _ngxZaloService: NgxZaloService) {
-}
-
 logout() {
   this._ngxZaloService.logout().subscribe();
 }
@@ -76,9 +78,6 @@ constructor(private _router: Router, private _ngxZaloService: NgxZaloService) {
 
 ### Check login status
 ```typescript
-constructor(private _ngxZaloService: NgxZaloService) {
-}
-
 checkLoginStatus() {
   console.log('Login status:', this._ngxZaloService.isLogin);
 }
@@ -86,9 +85,6 @@ checkLoginStatus() {
 
 ### Get my profile
 ```typescript
-constructor(private _ngxZaloService: NgxZaloService) {
-}
-
 getMyProfile() {
   this._ngxZaloService.getMyProfile().subscribe(result => {
     console.log('My profile:', result);
@@ -98,9 +94,6 @@ getMyProfile() {
 
 ### Get access token
 ```typescript
-constructor(private _ngxZaloService: NgxZaloService) {
-}
-
 getAccessToken() {
   console.log(this._ngxZaloService.accessToken);
 }

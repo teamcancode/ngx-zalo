@@ -1,8 +1,31 @@
 {
   "name": "ngx-zalo",
   "version": "0.0.0",
+  "description": "Use Zalo SDK with Angular5~ (https://developers.zalo.me/docs/sdk/javascript-sdk/tai-lieu)",
+  "main": "dist/publish.js",
+  "types": "dist/publish.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamcancode/ngx-zalo"
+  },
+  "keywords": [
+    "Zalo",
+    "Zalo SDK",
+    "Angular 4",
+    "Angular 5",
+    "Team Can Code",
+    "ngx-zalo",
+    "ngxzalo",
+    "ngx zalo"
+  ],
+  "author": "TeamCanCode <teamcancode@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teamcancode/ngx-zalo/issues"
+  },
+  "homepage": "https://github.com/teamcancode/ngx-zalo",
   "scripts": {
+    "prepublishOnly": "tsc -p publish-tsconfig.json",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
@@ -10,7 +33,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^5.2.0",
     "@angular/common": "^5.2.0",

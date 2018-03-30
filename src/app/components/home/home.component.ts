@@ -25,10 +25,9 @@ export class HomeComponent {
     console.log(this._ngxZaloService.accessToken);
   }
 
-  logout() {
-    this._ngxZaloService.logout().subscribe(() => {
-      console.log('Logout successfully');
-    });
+  // noinspection JSMethodCanBeStatic
+  logoutSuccessfullyAction() {
+    console.log('Logout successfully');
   }
 
 }

@@ -1,27 +1,107 @@
-# NgxZalo
+# Ngx Zalo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+This module is used for [Angular 5](https://angular.io/).  
+This module help you to use [Zalo SDK](https://developers.zalo.me/docs/sdk/javascript-sdk/tai-lieu) as service.  
 
-## Development server
+[Demo Ngx Zalo](https://github.com/teamcancode/demo-ngx-zalo).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+How to use:
+-------------
+### Installation:
+```html
+npm install ngx-zalo
+```
+    
+### Import service:
+Edit in `src/app/app.module.ts`:
+```typescript
+//...
+import { NgxZaloModule } from 'ngx-zalo';
 
-## Code scaffolding
+@NgModule({
+  //...
+  imports: [
+    //...
+    NgxZaloModule.forRoot({
+      version: '2.0',
+	  appId: <appId>,
+	  redirectUrl: <redirectUrl>,
+    }),
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Login
+```html
+<!-- Using directive -->
+<p ngxLoginZalo>Login Zalo</p>
+```
 
-## Build
+```typescript
+//Using controller
+constructor(private _ngxZaloService: NgxZaloService) {
+}
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+login() {
+  this._ngxZaloService.login();
+}
+```
 
-## Running unit tests
+### Logout
+```html
+<!-- Using directive -->
+<p ngxLogoutZalo (successEvent)="logoutSuccessfullyAction()">Logout Zalo</p>
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+//Using controller
+constructor(private _ngxZaloService: NgxZaloService) {
+}
 
-## Running end-to-end tests
+logout() {
+  this._ngxZaloService.logout().subscribe();
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Update login info - Call this function in redirect page to store zalo info
+```typescript
+constructor(private _router: Router, private _ngxZaloService: NgxZaloService) {
+  this._ngxZaloService.updateLoginInfo().subscribe(() => {
+    this._router.navigate(['/']);
+  });
+}
+```
 
-## Further help
+### Check login status
+```typescript
+constructor(private _ngxZaloService: NgxZaloService) {
+}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+checkLoginStatus() {
+  console.log('Login status:', this._ngxZaloService.isLogin);
+}
+```
+
+### Get my profile
+```typescript
+constructor(private _ngxZaloService: NgxZaloService) {
+}
+
+getMyProfile() {
+  this._ngxZaloService.getMyProfile().subscribe(result => {
+    console.log('My profile:', result);
+  });
+}
+```
+
+### Get access token
+```typescript
+constructor(private _ngxZaloService: NgxZaloService) {
+}
+
+getAccessToken() {
+  console.log(this._ngxZaloService.accessToken);
+}
+```

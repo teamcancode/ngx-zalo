@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgxZaloModule } from './shared/ngx-zalo.module';
 import { ZaloCallbackComponent } from './components/zalo-callback/zalo-callback.component';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -18,7 +19,11 @@ import { ZaloCallbackComponent } from './components/zalo-callback/zalo-callback.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxZaloModule,
+    NgxZaloModule.forRoot({
+      version: environment.zaloConfigs.version,
+      appId: environment.zaloConfigs.appId,
+      redirectUrl: environment.zaloConfigs.redirectUrl,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

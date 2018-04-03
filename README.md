@@ -16,27 +16,33 @@ npm install ngx-zalo
 Edit in `src/app/app.module.ts`:
 ```typescript
 //...
-import { NgxZaloModule } from 'ngx-zalo';
+import { NgxZaloModule, NgxZaloService } from 'ngx-zalo';
+
+const zaloConfigs = {
+  version: '2.0',
+  appId: '<appId>',
+  redirectUrl: '<redirectUrl>',
+};
 
 @NgModule({
   //...
   imports: [
     //...
-    NgxZaloModule.forRoot({
-      version: '2.0',
-	  appId: <appId>,
-	  redirectUrl: <redirectUrl>,
-    }),
+    NgxZaloModule,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(ngxZaloService: NgxZaloService) {
+    ngxZaloService.init(zaloConfigs);
+  }
+
+}
 ```
 
 And call in component:
 ```typescript
-import { NgxZaloService } from 'ngx-zalo/dist/app/shared/services/ngx-zalo.service';
-
 constructor(private _ngxZaloService: NgxZaloService) {
 }
 ```

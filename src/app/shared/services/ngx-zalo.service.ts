@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
 
@@ -22,12 +22,6 @@ export class NgxZaloService {
 
   get accessToken(): string {
     return this.isInitSuccessfully ? Zalo.getAccessToken() : null;
-  }
-
-  constructor(@Inject('zaloConfigs') private _configs: { version: string, appId: string, redirectUrl: string }) {
-    if (this._configs) {
-      this.init(this._configs);
-    }
   }
 
   init(configs: { version: string, appId: string, redirectUrl: string }): void {
@@ -121,6 +115,10 @@ export class NgxZaloService {
   }
 
   private initZaloScript(successCallback, errorCallback) {
+    if ('undefined' === typeof window) {
+      return;
+    }
+
     const script = document.createElement('script');
 
     script.src = this.SCRIPT_URL;
